@@ -1,9 +1,9 @@
-#include "gtest/gtest.h"
-#include <vector>
-#include <array>
 #include <list>
+#include <array>
 #include <deque>
+#include <vector>
 #include <forward_list>
+#include "gtest/gtest.h"
 #include "../OptimizedCopy/OptimizedCopy.hpp"
 
 TEST(StaticArray, Int)
@@ -30,7 +30,7 @@ TEST(StaticArray, Char)
 
 TEST(StaticArray, String)
 {
-	std::string src[5] = { "abc", "def", "E=mc^2", "Jesus", "hehehe" };
+	std::string src[5] = { "abc", "def", "E=mc^2", "Jesus", "he-he-he" };
 	std::string dst[5] = { "", "", "", "", "" };
 	optimized_copy(std::begin(src), std::end(src), std::begin(dst));
 	for (int i = 0; i < 5; ++i)
@@ -57,7 +57,7 @@ TEST(Vector, Char)
 
 TEST(Vector, String)
 {
-	std::vector<std::string> src = { "hello", "world", "!!!!", "src", "dst" };
+	std::vector<std::string> src = { "hello", "world", "!", "text", "program" };
 	std::vector<std::string> dst(5);
 	optimized_copy(src.begin(), src.end(), dst.begin());
 	EXPECT_EQ(src, dst);
@@ -108,10 +108,11 @@ TEST(String, CopyEntirely)
 		He reigns from the heaven above\n\
 		With wisdom, power and love\n\
 		Our God is an Awsome Gode";
+
 	std::string dst;
 	for (int i = 0; i < 1000; ++i)
 	{
-		dst.push_back('a');
+		dst.push_back('0');
 	}
 
 	optimized_copy(src.begin(), src.end(), dst.begin());
@@ -123,7 +124,7 @@ TEST(String, CopyEntirely)
 
 	for (size_t i = src.size(); i < dst.size(); ++i)
 	{
-		EXPECT_EQ(dst[i], 'a');
+		EXPECT_EQ(dst[i], '0');
 	}
 }
 
@@ -154,7 +155,7 @@ TEST(String, CopyPartly)
 	std::string dst;
 	for (int i = 0; i < 100; ++i)
 	{
-		dst.push_back('a');
+		dst.push_back('0');
 	}
 
 	optimized_copy(src.begin() + 100, src.begin() + 200, dst.begin());
