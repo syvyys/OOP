@@ -75,7 +75,7 @@ private:
 			num1 = std::stoll(path.substr(pos_ + 1, size1), &idx1);
 			num2 = std::stoll(path.substr(pos_x + 1, size2), &idx2);
 		}
-		catch (std::exception e)
+		catch (std::exception&)
 		{
 			return count_size_from_bmp();
 		}
